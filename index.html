@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jason Peters — Three Ways to Say It</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=DM+Sans:wght@300;400;500;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ground:#0D0E12; --surface:#121317;
+    --accent:#81D1F0; --amber:#FFB77D;
+    --text:#E3E2E8; --muted:#717885;
+    --border:rgba(129,209,240,0.20);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--ground);color:var(--text);
+    font-family:"DM Sans",system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;padding:0 20px;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background-image:linear-gradient(rgba(129,209,240,0.03) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(129,209,240,0.03) 1px,transparent 1px);
+    background-size:64px 64px;
+  }
+  .wrap{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:64px 0 80px}
+  .sig{display:flex;align-items:center;gap:13px;margin-bottom:48px}
+  .sig .g{
+    font-size:26px;color:var(--accent);line-height:1;
+    padding:0 2px;position:relative;text-shadow:0 0 22px rgba(129,209,240,.45);
+  }
+  .sig .g::after{content:"";position:absolute;inset:-9px -11px;border:1px solid rgba(129,209,240,.22);border-radius:50%}
+  .sig .w{font-family:"Cinzel",serif;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600}
+  .sig .s{font-size:9.5px;color:var(--muted);margin-top:2px}
+  h1{font-family:"Cinzel",serif;font-weight:600;font-size:clamp(30px,6.5vw,48px);line-height:1.1;letter-spacing:-.02em}
+  .am{font-size:clamp(13px,2.4vw,16px);color:var(--accent);opacity:.7;margin-top:12px}
+  .intro{font-size:15.5px;line-height:1.7;color:#b9bcc6;margin-top:26px;max-width:56ch;font-weight:300}
+  .cards{display:grid;gap:14px;margin-top:48px}
+  a.card{
+    display:block;text-decoration:none;color:inherit;
+    border:1.5px solid var(--border);border-radius:3px;
+    padding:24px 22px;background:linear-gradient(180deg,rgba(129,209,240,.04),transparent 70%);
+    transition:border-color .2s ease-out,transform .2s ease-out;
+  }
+  a.card:hover,a.card:focus-visible{
+    border-color:rgba(129,209,240,.5);transform:translateY(-3px);outline:none;
+  }
+  .tag{font-family:"JetBrains Mono",monospace;font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:11px}
+  .card h2{font-family:"Cinzel",serif;font-size:20px;font-weight:600;line-height:1.25;margin-bottom:6px}
+  .card .sub{font-size:10px;color:var(--accent);opacity:.6;margin-bottom:13px}
+  .card p{font-size:13.5px;line-height:1.62;color:var(--muted);font-weight:300}
+  .pick{
+    display:inline-block;margin-left:9px;padding:2px 8px;border-radius:2px;
+    font-family:"JetBrains Mono",monospace;font-size:8px;letter-spacing:.14em;
+    background:rgba(255,183,125,.14);color:var(--amber);border:1px solid rgba(255,183,125,.3);
+    vertical-align:middle;
+  }
+  footer{
+    margin-top:56px;padding-top:24px;border-top:1px solid rgba(255,255,255,.08);
+    font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--muted);
+    display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  }
+  @media(min-width:720px){ .cards{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="sig">
+    <div class="g">ጄ</div>
+    <div>
+      <div class="w">Jason Peters</div>
+      <div class="s">ጄሰን ፒተርስ · Addis Ababa</div>
+    </div>
+  </div>
+
+  <h1>Three ways to say<br>the same thing.</h1>
+  <div class="am">አንድ ነገር በሦስት መንገድ</div>
+  <p class="intro">
+    One profile, built three times in three different design canons. Same facts,
+    different argument. Pick the one that sounds like him — or keep all three and
+    send a different link to a different room.
+  </p>
+
+  <div class="cards">
+
+    <a class="card" href="heritage.html">
+      <div class="tag">Canon 01 · Heritage Noir <span class="pick">Recommended</span></div>
+      <h2>Obsidian &amp; Ge'ez</h2>
+      <div class="sub">ጥቁር ወርቅ</div>
+      <p>
+        Obsidian ground, velvet teal, liquid amber. Cinzel display over DM Sans, with
+        Amharic treated as a first-class voice rather than a subtitle. The ጄ sigil is the mark.
+        Built for a Pan-Africanist Ethiopian technologist — the only one of the three where
+        the Amharic carries equal weight to the English.
+      </p>
+    </a>
+
+    <a class="card" href="editorial.html">
+      <div class="tag">Canon 02 · Editorial Minimal</div>
+      <h2>Paper &amp; Ink</h2>
+      <div class="sub">ጋዜጣዊ ገጽታ</div>
+      <p>
+        Warm paper, Fraunces over Inter, drop cap, asymmetric twelve-column grid.
+        The type does the work and the portrait arrives after the argument, never before it.
+        Reads like a press profile rather than a landing page — the safest of the three
+        if this link is going anywhere professional.
+      </p>
+    </a>
+
+    <a class="card" href="scroll.html">
+      <div class="tag">Canon 03 · Scroll Cinema</div>
+      <h2>The Camera</h2>
+      <div class="sub">የሚንቀሳቀስ ገጽ</div>
+      <p>
+        Five scenes, one rAF loop, an eased camera. Addis at dusk, carved Ge'ez relief,
+        blockchain topology, then the record. Text fades on scene position, so nothing
+        moves while you are reading it. The showpiece — heavy, but nobody forgets it.
+      </p>
+    </a>
+
+  </div>
+
+  <footer>
+    <span>Jason Peters · ጄሰን ፒተርስ</span>
+    <span>Three canons · one subject</span>
+  </footer>
+
+</div>
+</body>
+</html>

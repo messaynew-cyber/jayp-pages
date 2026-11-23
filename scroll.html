@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jason Peters — Ethiopia, Technology, What Comes Next</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&family=Noto+Sans+Ethiopic:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ground:#0D0E12; --surface:#121317;
+  --accent:#81D1F0; --amber:#FFB77D;
+  --text:#E3E2E8; --muted:#717885;
+  --hair:rgba(255,255,255,.10);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--ground);color:var(--text);
+  font-family:"DM Sans",system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+#rail{position:fixed;left:0;top:0;height:2px;width:0;background:linear-gradient(90deg,var(--accent),var(--amber));z-index:100}
+#hud{
+  position:fixed;right:18px;bottom:18px;z-index:100;
+  font-family:ui-monospace,"SF Mono",monospace;font-size:10px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  text-align:right;line-height:1.7;pointer-events:none;
+}
+#hud b{color:var(--accent);font-weight:500}
+.scene{position:relative;min-height:130vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.stage{position:absolute;inset:0;overflow:hidden}
+.layer{position:absolute;inset:-12%;will-change:transform,opacity}
+.layer img{width:100%;height:100%;object-fit:cover;display:block}
+.veil{position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 45%,transparent 0%,rgba(13,14,18,.55) 55%,var(--ground) 100%)}
+.veil-hard{position:absolute;inset:0;background:linear-gradient(180deg,var(--ground) 0%,rgba(13,14,18,.25) 22%,rgba(13,14,18,.25) 78%,var(--ground) 100%)}
+.copy{position:relative;z-index:3;max-width:min(720px,86vw);text-align:left;opacity:0;will-change:transform,opacity}
+.eyebrow{
+  font-family:ui-monospace,monospace;font-size:10.5px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--amber);margin-bottom:20px;display:flex;align-items:center;gap:12px;
+}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--amber);opacity:.7;flex:0 0 auto}
+h1,h2{font-family:"Cinzel",serif;font-weight:600;letter-spacing:-.02em;line-height:1.04}
+h1{font-size:clamp(38px,8vw,74px)}
+h2{font-size:clamp(28px,5.6vw,52px)}
+.geez{
+  font-family:"Noto Sans Ethiopic",sans-serif;font-weight:400;
+  font-size:clamp(13px,2.2vw,17px);color:var(--accent);opacity:.68;
+  margin-top:14px;letter-spacing:.02em;
+}
+p{font-size:clamp(15px,1.9vw,18px);line-height:1.62;color:#b9bcc6;margin-top:22px;max-width:52ch;font-weight:300}
+.hl{color:var(--text);font-weight:500}
+.stats{display:flex;flex-wrap:wrap;gap:38px;margin-top:40px}
+.stat .n{font-family:"Cinzel",serif;font-size:clamp(24px,4vw,34px);color:var(--accent);line-height:1}
+.stat .l{font-family:ui-monospace,monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+#s0{min-height:100vh}
+#s0 .copy{text-align:center;margin:0 auto}
+#s0 h1{font-size:clamp(40px,9vw,86px)}
+#s0 p{margin-left:auto;margin-right:auto;text-align:center}
+#s0 .eyebrow{justify-content:center}
+#s0 .eyebrow::before{display:none}
+.scrollcue{
+  position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
+  z-index:4;font-family:ui-monospace,monospace;font-size:9.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:10px;
+}
+.scrollcue::after{content:"";width:1px;height:44px;background:linear-gradient(180deg,var(--accent),transparent);animation:drop 2s ease-in-out infinite}
+@keyframes drop{0%,100%{opacity:.25;transform:scaleY(.5)}50%{opacity:1;transform:scaleY(1)}}
+#s3{min-height:140vh}
+.tl{position:relative;z-index:3;width:min(760px,88vw)}
+.tl-row{display:grid;grid-template-columns:88px 1fr;gap:22px;padding:20px 0;border-bottom:1px solid var(--hair);opacity:0;will-change:transform,opacity}
+.tl-row .yr{font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.1em;color:var(--amber);padding-top:4px}
+.tl-row .what{font-size:16px;line-height:1.5}
+.tl-row .what b{display:block;font-weight:500;color:var(--text);margin-bottom:4px;font-size:17px}
+.tl-row .what span{color:var(--muted);font-size:14px;font-weight:300}
+#s4{min-height:100vh;flex-direction:column}
+.contact{display:flex;flex-wrap:wrap;gap:14px;margin-top:38px}
+.contact a{
+  display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:0 22px;
+  border:1px solid rgba(129,209,240,.28);border-radius:2px;
+  color:var(--text);text-decoration:none;font-size:13.5px;letter-spacing:.02em;
+  transition:border-color .2s ease-out,background .2s ease-out;background:rgba(129,209,240,.04);
+}
+.contact a:hover,.contact a:focus-visible{border-color:var(--accent);background:rgba(129,209,240,.10);outline:none}
+.contact a.primary{background:var(--accent);color:#0D0E12;border-color:var(--accent);font-weight:500}
+.contact a.primary:hover{background:#9cdcf5}
+footer{position:relative;z-index:3;margin-top:70px;padding-top:26px;border-top:1px solid var(--hair);width:min(760px,88vw);font-family:ui-monospace,monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+@media (prefers-reduced-motion:reduce){
+  .copy,.tl-row{opacity:1!important;transform:none!important}
+  .scrollcue::after{animation:none}
+  .scene{min-height:auto;padding:90px 0}
+}
+@media(max-width:560px){
+  .scene{min-height:118vh}
+  .tl-row{grid-template-columns:64px 1fr;gap:14px}
+  .stats{gap:26px}
+}
+</style>
+</head>
+<body>
+<div id="rail"></div>
+<div id="hud"><b id="hudScene">00 / INTRO</b><br>scroll &#8594;</div>
+<section class="scene" id="s0" data-label="INTRO">
+  <div class="stage">
+    <div class="layer" data-speed="0.16"><img src="assets/addis.jpg" alt="Addis Ababa at dusk"></div>
+    <div class="veil-hard"></div>
+  </div>
+  <div class="copy" data-fade>
+    <div class="eyebrow">Addis Ababa · አዲስ አበባ</div>
+    <h1>Jason Peters</h1>
+    <div class="geez">ጄሰን ፒተርስ</div>
+    <p>Technologist. Pan-Africanist. The man explaining AI to a country of 120 million — in their own language.</p>
+  </div>
+  <div class="scrollcue">Scroll</div>
+</section>
+
+<section class="scene" id="s1" data-label="THE GAP">
+  <div class="stage">
+    <div class="layer" data-speed="0.10" style="opacity:.22"><img src="assets/geez.jpg" alt="Ge'ez inscriptions"></div>
+    <div class="veil"></div>
+  </div>
+  <div class="copy" data-fade>
+    <div class="eyebrow">01 / The gap</div>
+    <h2>Everyone shipped AI<br>in English.</h2>
+    <div class="geez">ቴክኖሎጂ በአማርኛ</div>
+    <p>In 2020 the global AI conversation was happening in a language most Ethiopians do not wake up speaking. <span class="hl">Jason Peters built the bridge</span> — a channel, in Amharic, that took apart ChatGPT, tooling and the web3 shift for an audience the industry had not bothered to translate for.</p>
+    <div class="stats">
+      <div class="stat"><div class="n">2020</div><div class="l">Channel founded</div></div>
+      <div class="stat"><div class="n">84.7K</div><div class="l">Subscribers</div></div>
+      <div class="stat"><div class="n">#1</div><div class="l">Tech channel · ET</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s2" data-label="THE BUILD">
+  <div class="stage">
+    <div class="layer" data-speed="0.20"><img src="assets/mesh.jpg" alt="Blockchain network topology"></div>
+    <div class="veil"></div>
+  </div>
+  <div class="copy" data-fade>
+    <div class="eyebrow">02 / The build</div>
+    <h2>From explaining it<br>to building it.</h2>
+    <div class="geez">ኢትኤን ኢኮሲስተም</div>
+    <p>Founder of <span class="hl">ETN Ecosystem</span> and the <span class="hl">ET Apps Community</span> — decentralised platforms on the TON blockchain, aimed squarely at Africa's Web3 future rather than Silicon Valley's roadmap. Panelist at Ethiopian Blockchain Week 2025.</p>
+    <p>Also CTO at <span class="hl">Ge'ez E-sport</span>: competitive gaming infrastructure for a continent that has the players and, historically, not the servers.</p>
+  </div>
+</section>
+
+<section class="scene" id="s3" data-label="THE RECORD">
+  <div class="stage"><div class="veil"></div></div>
+  <div class="tl">
+    <div class="eyebrow">03 / The record</div>
+    <div class="tl-row" data-stagger><div class="yr">2020</div><div class="what"><b>ETHIO TECH with JayP</b><span>Ethiopia's #1 technology channel — ኢትዮ ቴክ ከጄይፕ ጋር. Research, editing, production, in-house.</span></div></div>
+    <div class="tl-row" data-stagger><div class="yr">2023</div><div class="what"><b>The ChatGPT interview</b><span>Explosive ETV sit-down on generative AI — the moment the mainstream Ethiopian audience met the technology.</span></div></div>
+    <div class="tl-row" data-stagger><div class="yr">—</div><div class="what"><b>Founder · ETN Ecosystem</b><span>Decentralised platforms and the ET Apps Community, built on TON.</span></div></div>
+    <div class="tl-row" data-stagger><div class="yr">—</div><div class="what"><b>CTO · Ge'ez E-sport</b><span>Competitive gaming infrastructure, Addis Ababa.</span></div></div>
+    <div class="tl-row" data-stagger><div class="yr">2025</div><div class="what"><b>Ethiopian Blockchain Week</b><span>Invited panelist — Africa's Web3 future, from an African standpoint.</span></div></div>
+    <div class="tl-row" data-stagger><div class="yr">—</div><div class="what"><b>UNISA</b><span>University of South Africa. The education that travelled with him.</span></div></div>
+  </div>
+</section>
+<section class="scene" id="s4" data-label="NEXT">
+  <div class="stage">
+    <div class="layer" data-speed="0.12" style="opacity:.16"><img src="assets/addis.jpg" alt=""></div>
+    <div class="veil"></div>
+  </div>
+  <div class="copy" data-fade>
+    <div class="eyebrow">04 / Next</div>
+    <h2>The audience is built.<br>The infrastructure is next.</h2>
+    <div class="geez">ቀጣዩ ምዕራፍ</div>
+    <div class="contact">
+      <a class="primary" href="https://www.youtube.com/@ethiotechj" target="_blank" rel="noopener">ETHIO TECH with JayP</a>
+      <a href="https://et.linkedin.com/in/jasonpeters-et" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://cyber.ethio-tech.com" target="_blank" rel="noopener">Cyber Ethiopia</a>
+    </div>
+    <footer><span>Jason Peters · Addis Ababa</span><span>ጄሰን ፒተርስ · አዲስ አበባ</span></footer>
+  </div>
+</section>
+
+<script>
+(function(){
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var scenes = [].slice.call(document.querySelectorAll(".scene"));
+  var layers = [].slice.call(document.querySelectorAll(".layer"));
+  var copies = [].slice.call(document.querySelectorAll(".copy[data-fade]"));
+  var rows   = [].slice.call(document.querySelectorAll("[data-stagger]"));
+  var rail   = document.getElementById("rail");
+  var hudScene = document.getElementById("hudScene");
+
+  var target = window.scrollY, current = target;
+  var vh = window.innerHeight;
+  var bounds = [];
+
+  function clamp(v,a,b){ return v < a ? a : v > b ? b : v; }
+
+  copies.forEach(function(c){ c._scene = c.closest(".scene"); });
+  rows.forEach(function(r){ r._top = r.getBoundingClientRect().top + window.scrollY; });
+
+  function measure(){
+    vh = window.innerHeight;
+    bounds = scenes.map(function(s){
+      return { top: s.offsetTop, h: s.offsetHeight, label: s.dataset.label };
+    });
+    copies.forEach(function(c){ c._b = { top: c._scene.offsetTop, h: c._scene.offsetHeight }; });
+    rows.forEach(function(r){
+      var rt = r.getBoundingClientRect();
+      r._b = { top: rt.top + window.scrollY };
+    });
+  }
+
+  function render(t){
+    var docH = document.documentElement.scrollHeight - vh;
+    rail.style.width = (docH > 0 ? (t / docH) * 100 : 0) + "%";
+
+    for (var i=0;i<layers.length;i++){
+      var el = layers[i];
+      var sp = parseFloat(el.dataset.speed || 0);
+      var p = el.parentElement.getBoundingClientRect();
+      var off = (p.top + p.height/2 - vh/2) * sp;
+      el.style.transform = "translate3d(0," + off.toFixed(2) + "px,0) scale(1.06)";
+    }
+
+    for (var j=0;j<copies.length;j++){
+      var c = copies[j], b = c._b;
+      if(!b) continue;
+      var enterA = b.top - vh*0.95, enterB = b.top - vh*0.55;
+      var exitA  = b.top + b.h - vh*0.60, exitB = b.top + b.h - vh*0.18;
+      var o = 1;
+      if (t < enterA) o = 0;
+      else if (t < enterB) o = (t-enterA)/(enterB-enterA);
+      else if (t > exitB) o = 0;
+      else if (t > exitA) o = 1 - (t-exitA)/(exitB-exitA);
+      o = clamp(o,0,1);
+      c.style.opacity = o.toFixed(3);
+      c.style.transform = "translate3d(0," + ((1-o)*26).toFixed(2) + "px,0)";
+      c.style.pointerEvents = o > 0.5 ? "auto" : "none";
+    }
+
+    for (var k=0;k<rows.length;k++){
+      var r = rows[k], rb = r._b;
+      if(!rb) continue;
+      var p2 = clamp((t - (rb.top - vh*0.88)) / (vh*0.42), 0, 1);
+      r.style.opacity = p2.toFixed(3);
+      r.style.transform = "translate3d(0," + ((1-p2)*18).toFixed(2) + "px,0)";
+    }
+
+    for (var m=bounds.length-1;m>=0;m--){
+      if (t >= bounds[m].top - vh*0.55){
+        hudScene.textContent = ("0"+m) + " / " + bounds[m].label;
+        break;
+      }
+    }
+  }
+
+  function loop(){
+    target = window.scrollY;
+    current += (target - current) * 0.14;
+    if (Math.abs(target-current) < 0.4) current = target;
+    render(current);
+    requestAnimationFrame(loop);
+  }
+
+  window.addEventListener("resize", measure);
+  window.addEventListener("load", measure);
+  measure();
+
+  if (reduce){
+    copies.forEach(function(c){ c.style.opacity = 1; c.style.transform="none"; });
+    rows.forEach(function(r){ r.style.opacity = 1; r.style.transform="none"; });
+    render(window.scrollY);
+  } else {
+    requestAnimationFrame(loop);
+  }
+})();
+</script>
+</body>
+</html>

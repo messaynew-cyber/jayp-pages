@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jason Peters — Technologist, Addis Ababa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Inter:wght@300;400;500&family=Noto+Sans+Ethiopic:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAF8F4; --ink:#17171A; --muted:#6E6A60;
+  --accent:#8C3A1E; --hair:rgba(0,0,0,0.08);
+  --s1:17px; --s2:21px; --s3:27px; --s4:34px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:"Inter",system-ui,sans-serif;font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  padding:0 22px;
+}
+.wrap{max-width:1180px;margin:0 auto}
+.grid{display:grid;grid-template-columns:1fr;gap:0}
+@media(min-width:880px){
+  .grid{grid-template-columns:repeat(12,1fr);column-gap:32px}
+}
+/* ---- masthead ---- */
+header{
+  border-bottom:1px solid var(--hair);
+  padding:26px 0 18px;
+  display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;
+  font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);
+}
+header b{font-weight:500;color:var(--ink)}
+.geez-sm{font-family:"Noto Sans Ethiopic",sans-serif;letter-spacing:0;text-transform:none;font-size:12px;color:var(--muted);opacity:.75}
+/* ---- hero ---- */
+.hero{padding:78px 0 64px;border-bottom:1px solid var(--hair)}
+@media(min-width:880px){ .hero{padding:110px 0 88px} }
+.eyebrow{
+  font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);
+  margin-bottom:26px;
+}
+h1{
+  font-family:"Fraunces",Georgia,serif;font-weight:300;
+  font-size:clamp(44px,9.2vw,104px);
+  line-height:1.02;letter-spacing:-0.035em;
+  margin:0;
+}
+h1 em{font-style:italic;font-weight:400}
+.geez-lead{
+  font-family:"Noto Sans Ethiopic",sans-serif;font-size:clamp(15px,2.4vw,20px);
+  color:var(--muted);margin-top:18px;letter-spacing:.02em;
+}
+.standfirst{
+  font-size:clamp(18px,2.5vw,23px);line-height:1.5;color:#2b2a28;
+  margin-top:38px;max-width:34ch;font-weight:300;
+}
+.hero-meta{
+  margin-top:44px;display:flex;gap:44px;flex-wrap:wrap;
+  font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+}
+.hero-meta span b{display:block;color:var(--ink);font-weight:500;font-size:13px;letter-spacing:.06em;margin-bottom:4px;text-transform:none}
+/* ---- portrait plate ---- */
+.plate{margin:64px 0;padding:0}
+.plate img{width:100%;height:auto;display:block;filter:saturate(1.02) contrast(1.02)}
+.plate figcaption{
+  font-size:11.5px;color:var(--muted);margin-top:12px;line-height:1.5;
+  letter-spacing:.01em;max-width:52ch;
+}
+@media(min-width:880px){
+  .plate{grid-column:1 / 8}
+  .plate-side{grid-column:9 / 13;align-self:end}
+}
+/* ---- body ---- */
+section.body{padding:0 0 96px}
+@media(min-width:880px){ section.body{padding:0 0 140px} }
+.lede{font-size:var(--s2);line-height:1.62;max-width:62ch;font-weight:300}
+.lede p + p{margin-top:1.35em}
+.body h2{
+  font-family:"Fraunces",Georgia,serif;font-weight:300;font-size:var(--s4);
+  letter-spacing:-0.025em;line-height:1.12;margin:0 0 22px;
+}
+.body h2 + .geez-sm{margin:-12px 0 26px;display:block}
+.body p{font-size:var(--s1);line-height:1.7;max-width:62ch;margin-bottom:1.3em;color:#2b2a28}
+.body p:last-child{margin-bottom:0}
+.body a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:1px;transition:opacity .18s}
+.body a:hover{border-bottom-width:2px}
+.dropcap::first-letter{
+  font-family:"Fraunces",Georgia,serif;font-weight:400;float:left;
+  font-size:3.9em;line-height:.82;padding:.06em .09em 0 0;color:var(--accent);
+}
+/* ---- work list ---- */
+.work{border-top:1px solid var(--hair);margin-top:12px}
+.work-row{
+  display:grid;grid-template-columns:1fr;gap:4px;
+  padding:22px 0;border-bottom:1px solid var(--hair);
+}
+@media(min-width:700px){ .work-row{grid-template-columns:180px 1fr;gap:28px} }
+.work-row .role{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);padding-top:5px}
+.work-row .what{font-size:var(--s1);line-height:1.55}
+.work-row .what b{font-weight:500}
+.work-row .what span{display:block;color:var(--muted);font-size:15px;margin-top:5px;font-weight:300}
+/* ---- pull quote ---- */
+.pull{
+  border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);
+  padding:56px 0;margin:8px 0 0;
+}
+@media(min-width:880px){ .pull{grid-column:1/9} }
+.pull q{
+  font-family:"Fraunces",Georgia,serif;font-weight:300;font-style:italic;
+  font-size:clamp(24px,4vw,38px);line-height:1.32;letter-spacing:-.02em;quotes:"“" "”";
+}
+.pull cite{
+  display:block;margin-top:24px;font-style:normal;font-size:11px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+}
+/* ---- footer ---- */
+footer{
+  border-top:1px solid var(--hair);padding:38px 0 70px;
+  display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+}
+footer a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--accent)}
+.note{
+  font-size:12px;color:var(--muted);line-height:1.6;max-width:46ch;margin-top:8px;
+  font-weight:300;letter-spacing:0;text-transform:none;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div><b>Jason Peters</b> &nbsp;·&nbsp; Addis Ababa</div>
+  <div class="geez-sm">ጄሰን ፒተርስ · አዲስ አበባ</div>
+</header>
+
+<div class="hero">
+  <div class="grid">
+    <div style="grid-column:1/12">
+      <div class="eyebrow">Profile &nbsp;/&nbsp; Technology &amp; Pan-Africanism</div>
+      <h1>The man who<br>translated <em>AI</em><br>into Amharic.</h1>
+      <div class="geez-lead">ቴክኖሎጂን በአማርኛ ያወራው ሰው</div>
+      <p class="standfirst">Technologist, founder, broadcaster — and one of the few people building Ethiopia's digital layer while explaining it to the people who live on it.</p>
+      <div class="hero-meta">
+        <span><b>Based</b>Addis Ababa, Ethiopia</span>
+        <span><b>Ventures</b>ETN Ecosystem · Ge'ez E-sport</span>
+        <span><b>Channel</b>ETHIO TECH with JayP</span>
+        <span><b>Alma mater</b>UNISA</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="grid">
+  <figure class="plate">
+    <img src="assets/portrait.jpg" alt="Portrait of Jason Peters">
+    <figcaption>Jason Peters at work in Addis Ababa. His channel, <em>ETHIO TECH with JayP</em>, is the country's largest Amharic-language technology publication — founded 2020, 84,700 subscribers, and the source most Ethiopian readers first learned about generative AI from.</figcaption>
+  </figure>
+</div>
+
+<section class="body">
+  <div class="grid">
+    <div style="grid-column:1/8">
+      <p class="lede dropcap">There is a particular kind of gap that opens when a technology arrives faster than a language does. In 2020, large language models were being demonstrated, debated and monetised in English — while a hundred and twenty million Ethiopians were reading about them in translation, or not at all. Jason Peters decided the translation should not come second-hand.</p>
+    </div>
+  </div>
+</section>
+
+<section class="body">
+  <div class="grid">
+    <div style="grid-column:1/8">
+      <h2>First a broadcaster</h2>
+      <span class="geez-sm">መጀመሪያ ተናጋሪ</span>
+      <p>He built <b>ETHIO TECH with JayP</b> — ኢትዮ ቴክ ከጄይፕ ጋር — from the ground up: research, scripting, editing and production all handled in-house, in Amharic, for an audience that was not being served. It grew to 84,700 subscribers and a reputation as the country's number one technology channel.</p>
+      <p>The ETV interview on ChatGPT was the moment it broke past the tech audience. Suddenly the conversation about generative AI was happening in living rooms, in Amharic, and it was being led by somebody who had actually used the tools rather than read a press release about them.</p>
+      <p>That route — practitioner first, explainer second — is why the channel has held credibility where a thousand generic "AI news" accounts have not. He is not forecasting from a distance. He is reporting from inside the build.</p>
+    </div>
+  </div>
+</section>
+
+<section class="body">
+  <div class="grid">
+    <div style="grid-column:1/8">
+      <h2>Then a founder</h2>
+      <span class="geez-sm">ከዚያ መስራች</span>
+      <p>Explaining a technology eventually stops being enough. <b>ETN Ecosystem</b> and the <b>ET Apps Community</b> are his attempt to move from commentary to infrastructure — decentralised platforms built on the TON blockchain, with an explicitly African frame of reference rather than an imported one.</p>
+      <p>The distinction matters. A great deal of Web3 in Africa has been built for foreign capital looking for a market. ETN reads as the inverse: a community of builders, in Ethiopia, working out what decentralised platforms are actually for when the local constraints are payment rails, connectivity and trust rather than speculative yield.</p>
+      <p>In 2025 he took that argument to <b>Ethiopian Blockchain Week</b> as an invited panelist — Africa's Web3 future, argued from an African standpoint.</p>
+    </div>
+  </div>
+</section>
+
+<div class="grid">
+  <div style="grid-column:1/8">
+    <div class="work">
+      <h2 style="margin-bottom:26px">The record</h2>
+      <div class="work-row"><div class="role">2020 —</div><div class="what"><b>Founder &amp; Host, ETHIO TECH with JayP</b><span>Ethiopia's leading Amharic-language technology channel. 84,700 subscribers.</span></div></div>
+      <div class="work-row"><div class="role">Founder</div><div class="what"><b>ETN Ecosystem &amp; ET Apps Community</b><span>Decentralised platforms on TON. Community-led Web3 infrastructure.</span></div></div>
+      <div class="work-row"><div class="role">CTO</div><div class="what"><b>Ge'ez E-sport</b><span>Competitive gaming infrastructure, Addis Ababa.</span></div></div>
+      <div class="work-row"><div class="role">2025</div><div class="what"><b>Panelist, Ethiopian Blockchain Week</b><span>On decentralised platforms and Ethiopia's digital transformation.</span></div></div>
+      <div class="work-row"><div class="role">Education</div><div class="what"><b>University of South Africa (UNISA)</b><span>Studied while building. The credential that travelled with him.</span></div></div>
+      <div class="work-row"><div class="role">Elsewhere</div><div class="what"><b>Writer, Cyber Ethiopia</b><span>Practical AI: writing, composition, correspondence, question answering.</span></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="pull" style="grid-column:1/9">
+    <q>Pan-Africanism is not a slogan you put on a conference badge. It is a decision about who your technology is designed for — and Ethiopia is not a market to be reached, it is a place to be built from.</q>
+    <cite>Jason Peters — position as described across his published work</cite>
+  </div>
+</div>
+
+<footer>
+  <div>
+    <a href="https://www.youtube.com/@ethiotechj" target="_blank" rel="noopener">ETHIO TECH with JayP</a> &nbsp;·&nbsp;
+    <a href="https://et.linkedin.com/in/jasonpeters-et" target="_blank" rel="noopener">LinkedIn</a> &nbsp;·&nbsp;
+    <a href="https://cyber.ethio-tech.com" target="_blank" rel="noopener">Cyber Ethiopia</a>
+    <div class="note">Portrait imagery is AI-generated for layout purposes. Figures and roles compiled from public sources (LinkedIn, Ethiopian Blockchain Week 2025, ETHIO TECH channel).</div>
+  </div>
+  <div class="geez-sm">ጄሰን ፒተርስ · አዲስ አበባ</div>
+</footer>
+
+</div>
+</body>
+</html>

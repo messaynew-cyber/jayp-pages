@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jason Peters — ጄሰን ፒተርስ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=DM+Sans:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Ethiopic:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ground:#0D0E12; --surface:#121317;
+  --accent:#81D1F0; --secondary:#FFB77D;
+  --text:#E3E2E8; --muted:#717885;
+  --border:rgba(129,209,240,0.22);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--ground);color:var(--text);
+  font-family:"DM Sans",system-ui,-apple-system,sans-serif;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  line-height:1.6;
+}
+/* one texture layer, 1px grid at 3.5% */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:linear-gradient(rgba(129,209,240,0.035) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(129,209,240,0.035) 1px,transparent 1px);
+  background-size:64px 64px;
+}
+.wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 22px}
+/* ---------- sigil / nav ---------- */
+.nav{
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding:26px 0 22px;border-bottom:1px solid rgba(255,255,255,0.07);
+}
+.sigil{
+  display:flex;align-items:center;gap:14px;
+}
+.sigil .glyph{
+  font-family:"Noto Sans Ethiopic",sans-serif;font-size:26px;color:var(--accent);
+  line-height:1;position:relative;padding:0 2px;
+  text-shadow:0 0 22px rgba(129,209,240,0.45);
+}
+.sigil .glyph::after{
+  content:"";position:absolute;inset:-9px -11px;border:1px solid rgba(129,209,240,0.22);
+  border-radius:50%;
+}
+.sigil .word{
+  font-family:"Cinzel",serif;font-size:13px;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;
+}
+.sigil .sub{
+  font-family:"Noto Sans Ethiopic",sans-serif;font-size:9.5px;color:var(--muted);
+  letter-spacing:.06em;margin-top:2px;
+}
+.nav-links{display:flex;gap:22px;align-items:center}
+.nav-links a{
+  font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);text-decoration:none;
+  transition:color .2s ease-out;padding:6px 0;
+}
+.nav-links a:hover,.nav-links a:focus-visible{color:var(--accent);outline:none}
+/* ---------- hero ---------- */
+.hero{position:relative;padding:74px 0 92px;overflow:hidden}
+.hero-plate{
+  position:absolute;right:-8%;top:0;width:58%;height:100%;
+  opacity:.30;
+  -webkit-mask-image:radial-gradient(60% 70% at 60% 45%,#000 0%,transparent 78%);
+          mask-image:radial-gradient(60% 70% at 60% 45%,#000 0%,transparent 78%);
+}
+.hero-plate img{width:100%;height:100%;object-fit:cover;filter:saturate(.75)}
+.hero-inner{position:relative;z-index:2;max-width:640px}
+.kicker{
+  font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--secondary);margin-bottom:24px;
+  display:flex;align-items:center;gap:12px;
+}
+.kicker::before{content:"";width:38px;height:1px;background:var(--secondary);opacity:.65}
+h1{
+  font-family:"Cinzel",serif;font-weight:700;
+  font-size:clamp(42px,8.6vw,78px);line-height:1.02;letter-spacing:-.015em;
+}
+.geez-title{
+  font-family:"Noto Sans Ethiopic",sans-serif;font-size:clamp(17px,3.4vw,26px);
+  color:var(--accent);opacity:.72;margin-top:16px;letter-spacing:.02em;font-weight:400;
+}
+.tagline{
+  font-size:clamp(16px,2.2vw,19px);line-height:1.62;color:#b9bcc6;
+  margin-top:30px;font-weight:300;max-width:48ch;
+}
+.tagline b{color:var(--text);font-weight:500}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:38px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:48px;padding:0 26px;text-decoration:none;
+  font-size:13px;letter-spacing:.04em;border-radius:2px;
+  border:1.5px solid var(--border);color:var(--text);
+  background:transparent;transition:all .2s ease-out;
+}
+.btn:hover,.btn:focus-visible{border-color:var(--accent);background:rgba(129,209,240,.08);outline:none}
+.btn-solid{background:var(--accent);color:#0D0E12;border-color:var(--accent);font-weight:700}
+.btn-solid:hover{background:#9cdcf5;border-color:#9cdcf5}
+/* ---------- stat band ---------- */
+.band{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:1px;
+  background:rgba(255,255,255,0.07);
+  border-top:1px solid rgba(255,255,255,0.07);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+}
+@media(min-width:720px){ .band{grid-template-columns:repeat(4,1fr)} }
+.cell{
+  background:var(--ground);padding:32px 22px;
+}
+.cell .n{font-family:"Cinzel",serif;font-size:clamp(28px,5vw,42px);color:var(--accent);line-height:1;font-weight:600}
+.cell .l{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:12px}
+.cell .am{font-family:"Noto Sans Ethiopic",sans-serif;font-size:10px;color:var(--muted);opacity:.62;margin-top:6px}
+/* ---------- sections ---------- */
+section.blk{padding:84px 0}
+.sec-head{margin-bottom:40px}
+.sec-head .kicker{margin-bottom:18px}
+h2{
+  font-family:"Cinzel",serif;font-weight:600;
+  font-size:clamp(26px,5vw,40px);line-height:1.12;letter-spacing:-.01em;
+}
+.sec-sub{font-family:"Noto Sans Ethiopic",sans-serif;font-size:12px;color:var(--accent);opacity:.6;margin-top:12px}
+.sec-head p{
+  font-size:16px;line-height:1.68;color:#b9bcc6;margin-top:22px;max-width:58ch;font-weight:300;
+}
+/* two col */
+.two{display:grid;grid-template-columns:1fr;gap:36px}
+@media(min-width:820px){ .two{grid-template-columns:1.15fr .85fr;gap:56px;align-items:center} }
+.two.rev{grid-template-columns:1fr}
+@media(min-width:820px){ .two.rev{grid-template-columns:.85fr 1.15fr} }
+.plate2{border:1.5px solid var(--border);padding:0;overflow:hidden;position:relative}
+.plate2 img{width:100%;height:100%;display:block;object-fit:cover}
+.plate2::after{
+  content:"";position:absolute;inset:0;
+  box-shadow:inset 0 0 60px rgba(13,14,18,.55);
+  pointer-events:none;
+}
+.prose p{font-size:16px;line-height:1.72;color:#b9bcc6;font-weight:300;margin-bottom:1.25em}
+.prose p:last-child{margin-bottom:0}
+.prose b{color:var(--text);font-weight:500}
+/* ---------- venture cards ---------- */
+.cards{display:grid;grid-template-columns:1fr;gap:18px}
+@media(min-width:760px){ .cards{grid-template-columns:repeat(3,1fr)} }
+.card{
+  border:1.5px solid rgba(129,209,240,0.16);
+  background:linear-gradient(180deg,rgba(129,209,240,0.045),transparent 70%);
+  padding:28px 24px;border-radius:2px;
+  transition:border-color .22s ease-out,transform .22s ease-out;
+}
+.card:hover{border-color:rgba(129,209,240,0.42);transform:translateY(-3px)}
+.card .tag{
+  font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--secondary);margin-bottom:16px;display:block;
+}
+.card h3{
+  font-family:"Cinzel",serif;font-size:19px;font-weight:600;line-height:1.25;margin-bottom:8px;
+}
+.card .am{font-family:"Noto Sans Ethiopic",sans-serif;font-size:10.5px;color:var(--accent);opacity:.6;margin-bottom:14px}
+.card p{font-size:14px;line-height:1.62;color:var(--muted);font-weight:300}
+/* ---------- timeline ---------- */
+.tl{border-top:1.5px solid rgba(255,255,255,0.08)}
+.tl-row{
+  display:grid;grid-template-columns:74px 1fr;gap:20px;
+  padding:22px 0;border-bottom:1.5px solid rgba(255,255,255,0.06);
+}
+@media(min-width:700px){ .tl-row{grid-template-columns:120px 1fr} }
+.tl-row .yr{
+  font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.12em;
+  color:var(--secondary);padding-top:4px;
+}
+.tl-row b{display:block;font-weight:500;font-size:16px;color:var(--text);margin-bottom:5px}
+.tl-row span{font-size:14.5px;color:var(--muted);font-weight:300;line-height:1.55}
+/* ---------- quote ---------- */
+.quote{
+  border-left:1.5px solid var(--secondary);
+  padding:8px 0 8px 30px;margin:0 0 0 2px;
+}
+.quote q{
+  font-family:"Cinzel",serif;font-weight:400;font-size:clamp(19px,3.4vw,27px);
+  line-height:1.45;color:var(--text);letter-spacing:-.005em;quotes:"“" "”";
+}
+.quote cite{
+  display:block;margin-top:20px;font-style:normal;
+  font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);
+}
+/* ---------- contact ---------- */
+.contact-band{
+  border:1.5px solid var(--border);padding:44px 30px;border-radius:2px;
+  background:radial-gradient(120% 140% at 12% 0%,rgba(129,209,240,0.09),transparent 65%);
+}
+.contact-band h2{margin-bottom:14px}
+.links{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+footer{
+  padding:38px 0 60px;border-top:1px solid rgba(255,255,255,0.07);
+  display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;
+  font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);
+}
+footer .am{font-family:"Noto Sans Ethiopic",sans-serif;letter-spacing:.02em;text-transform:none;font-size:11px;opacity:.75}
+@media(max-width:600px){
+  .hero{padding:54px 0 68px}
+  .hero-plate{width:80%;right:-22%;opacity:.22}
+  section.blk{padding:64px 0}
+  .cell{padding:26px 18px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav class="nav">
+  <div class="sigil">
+    <div class="glyph">ጄ</div>
+    <div>
+      <div class="word">Jason Peters</div>
+      <div class="sub">ጄሰን ፒተርስ</div>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="#work">Work</a>
+    <a href="#record">Record</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-plate"><img src="assets/portrait.jpg" alt=""></div>
+  <div class="hero-inner">
+    <div class="kicker">Addis Ababa · Est. 2020</div>
+    <h1>Jason<br>Peters</h1>
+    <div class="geez-title">ጄሰን ፒተርስ</div>
+    <p class="tagline">Technologist and Pan-Africanist. <b>Ethiopia's #1 technology channel.</b> Founder of ETN Ecosystem. Building the digital layer of a country that refuses to wait for permission.</p>
+    <div class="hero-cta">
+      <a class="btn btn-solid" href="https://www.youtube.com/@ethiotechj" target="_blank" rel="noopener">ETHIO TECH with JayP</a>
+      <a class="btn" href="#work">The work</a>
+    </div>
+  </div>
+</header>
+
+<div class="band">
+  <div class="cell"><div class="n">84.7K</div><div class="l">Subscribers</div><div class="am">ተመዝጋቢዎች</div></div>
+  <div class="cell"><div class="n">#1</div><div class="l">Tech channel · ET</div><div class="am">የቴክኖሎጂ ቻናል</div></div>
+  <div class="cell"><div class="n">2020</div><div class="l">Founded</div><div class="am">የተመሰረተበት</div></div>
+  <div class="cell"><div class="n">TON</div><div class="l">Blockchain</div><div class="am">ብሎክቼይን</div></div>
+</div>
+
+<section class="blk" id="work">
+  <div class="sec-head">
+    <div class="kicker">01 / The premise</div>
+    <h2>Everyone shipped AI in English.</h2>
+    <div class="sec-sub">ቴክኖሎጂ በአማርኛ አልተጀመረም</div>
+    <p>In 2020 the global conversation about artificial intelligence was happening in a language most Ethiopians do not wake up speaking, and the people explaining it were rarely the people building it. <b style="color:#E3E2E8;font-weight:500">Jason Peters closed that gap himself</b> — no franchise, no translation desk, no foreign backer.</p>
+  </div>
+  <div class="two">
+    <div class="prose">
+      <p>ETHIO TECH with JayP — ኢትዮ ቴክ ከጄይፕ ጋር — began as one person doing research, scripting, presenting, editing and publishing in Amharic. It grew into the most-watched technology channel in the country.</p>
+      <p>The ETV interview on ChatGPT was the inflection point: the moment generative AI stopped being a foreign curiosity and became a domestic argument, conducted in Amharic, on national television, by somebody who had actually used the tools.</p>
+    </div>
+    <figure class="plate2"><img src="assets/geez.jpg" alt="Ge'ez inscription texture"></figure>
+  </div>
+</section>
+
+<section class="blk">
+  <div class="sec-head">
+    <div class="kicker">02 / From explaining to building</div>
+    <h2>The ventures</h2>
+    <div class="sec-sub">ኢትኤን ኢኮሲስተም</div>
+  </div>
+  <div class="cards">
+    <article class="card">
+      <span class="tag">Founder · Web3</span>
+      <h3>ETN Ecosystem</h3>
+      <div class="am">ኢትኤን ኢኮሲስተም</div>
+      <p>Decentralised platforms on the TON blockchain, built with an explicitly African frame of reference rather than an imported one.</p>
+    </article>
+    <article class="card">
+      <span class="tag">Founder · Community</span>
+      <h3>ET Apps Community</h3>
+      <div class="am">የመተግበሪያ ማህበረሰብ</div>
+      <p>A builder community around the ecosystem — apps, contributors, and the practical work of shipping on decentralised rails in Ethiopia.</p>
+    </article>
+    <article class="card">
+      <span class="tag">CTO · Esports</span>
+      <h3>Ge'ez E-sport</h3>
+      <div class="am">ግዕዝ ኢ-ስፖርት</div>
+      <p>Competitive gaming infrastructure in Addis Ababa — for a continent that has always had the players and never had the servers.</p>
+    </article>
+  </div>
+</section>
+
+<section class="blk">
+  <div class="two rev">
+    <figure class="plate2"><img src="assets/mesh.jpg" alt="Blockchain network topology"></figure>
+    <div class="prose">
+      <div class="sec-head" style="margin-bottom:22px">
+        <div class="kicker">03 / Position</div>
+        <h2>Africa is not a market to be reached.</h2>
+        <div class="sec-sub">አፍሪካ መዳረሻ አይደለችም</div>
+      </div>
+      <p>Much of Web3 in Africa has been built for foreign capital looking for a frontier. ETN reads as the inverse: a community in Ethiopia working out what decentralised platforms are actually <b>for</b> when the real constraints are payment rails, connectivity and trust — not speculative yield.</p>
+      <p>He took that argument to <b>Ethiopian Blockchain Week 2025</b> as an invited panelist. The brief was Ethiopia's digital transformation on decentralised rails. He is one of the few people in the room who also had an audience of eighty thousand to explain it to afterwards.</p>
+    </div>
+  </div>
+</section>
+
+<section class="blk" id="record">
+  <div class="sec-head">
+    <div class="kicker">04 / The record</div>
+    <h2>Track record</h2>
+    <div class="sec-sub">የስራ ታሪክ</div>
+  </div>
+  <div class="tl">
+    <div class="tl-row"><div class="yr">2020 —</div><div><b>Founder &amp; Host · ETHIO TECH with JayP</b><span>Ethiopia's leading Amharic-language technology channel. 84,700 subscribers. Research, editing and production in-house.</span></div></div>
+    <div class="tl-row"><div class="yr">2023</div><div><b>ETV interview on ChatGPT</b><span>The national broadcast that put generative AI into mainstream Ethiopian conversation.</span></div></div>
+    <div class="tl-row"><div class="yr">—</div><div><b>Founder · ETN Ecosystem / ET Apps Community</b><span>Decentralised platforms and community infrastructure on TON.</span></div></div>
+    <div class="tl-row"><div class="yr">—</div><div><b>CTO · Ge'ez E-sport</b><span>Competitive gaming infrastructure, Addis Ababa.</span></div></div>
+    <div class="tl-row"><div class="yr">2025</div><div><b>Panelist · Ethiopian Blockchain Week</b><span>Africa's Web3 future, argued from an African standpoint.</span></div></div>
+    <div class="tl-row"><div class="yr">Education</div><div><b>University of South Africa · UNISA</b><span>Studied while building. The credential that travelled with him.</span></div></div>
+    <div class="tl-row"><div class="yr">Writing</div><div><b>Contributor · Cyber Ethiopia</b><span>Practical AI: composition, correspondence, research and question answering.</span></div></div>
+  </div>
+</section>
+
+<section class="blk">
+  <div class="quote">
+    <q>Pan-Africanism is not a slogan you put on a conference badge. It is a decision about who your technology is designed for.</q>
+    <cite>Jason Peters — position as expressed across his published work</cite>
+  </div>
+</section>
+
+<section class="blk" id="contact">
+  <div class="contact-band">
+    <div class="kicker">05 / Next</div>
+    <h2>The audience is built.<br>The infrastructure is next.</h2>
+    <div class="sec-sub">ቀጣዩ ምዕራፍ</div>
+    <div class="links">
+      <a class="btn btn-solid" href="https://www.youtube.com/@ethiotechj" target="_blank" rel="noopener">YouTube</a>
+      <a class="btn" href="https://et.linkedin.com/in/jasonpeters-et" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://cyber.ethio-tech.com" target="_blank" rel="noopener">Cyber Ethiopia</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>Jason Peters · Addis Ababa · Ethiopia</div>
+  <div class="am">ጄሰን ፒተርስ · አዲስ አበባ · ኢትዮጵያ</div>
+</footer>
+
+</div>
+</body>
+</html>
