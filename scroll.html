@@ -3,6 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0D0E12">
+<meta name="color-scheme" content="dark">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Jason Peters">
+<meta name="msapplication-navbutton-color" content="#0D0E12">
 <title>Jason Peters — Ethiopia, Technology, What Comes Next</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -96,6 +102,10 @@ footer{position:relative;z-index:3;margin-top:70px;padding-top:26px;border-top:1
   .tl-row{grid-template-columns:64px 1fr;gap:14px}
   .stats{gap:26px}
 }
+
+/* status-bar safe area — keeps the ground painted under the notch/bar */
+body{padding-top:env(safe-area-inset-top,0px)}
+@supports(padding:max(0px)){body{padding-top:max(0px,env(safe-area-inset-top))}}
 </style>
 </head>
 <body>
